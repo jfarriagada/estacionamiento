@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+
+  <div class="col-md-3">
+
+      <form method="POST" action="">{% csrf_token %}
+          <label>Ingrese Patente</label>
+          <input type="text" name="patent" value="" required="True">
+          <button type="submit" class="btn btn-default">Enviar</button>
+      </form>
+      <br>
+      {% if patent != "" %}
+        <p>El auto lleva {{ days_parking }} días aparcado.</p>
+      {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}

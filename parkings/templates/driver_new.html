@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+
+  <div class="col-md-3">
+      <h4>Nuevo Conductor</h4>
+      <form method="POST" action="">{% csrf_token %}
+            <label>RUT</label>
+            {{ form.rut }}
+
+            <label>Nombre</label>
+            {{ form.name }}
+
+            <label>Apellido</label>
+            {{ form.lastname }}
+
+            <label>Sexo</label>
+            {{ form.sex }}
+
+            <label>Edad</label>
+            {{ form.age }}
+          <br>
+          <button type="submit" class="btn btn-default">Enviar</button>
+      </form>
+      <br>
+  </div>
+
+  <div>
+    <table class="table">
+        <caption>Lista de Conductores</caption>
+        <thead>
+            <tr>
+                <th>RUT</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Sexo</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        {% for d in driver %}
+        <tbody>
+            <tr>
+                <td>{{ d.rut }}</td>
+                <td>{{ d.name }}</td>
+                <td>{{ d.lastname }}</td>
+                <td>{{ d.sex }}</td>
+                <td>{{ d.age }}</td>
+                <td><a href="{% url "car_new" pk_driver=d.pk %}">Auto</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+  </div>
+
+</div>
+
+{% endblock %}

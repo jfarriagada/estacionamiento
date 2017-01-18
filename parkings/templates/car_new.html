@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+
+  <div class="col-md-3">
+      <h4>Nuevo Auto</h4>
+      <form method="POST" action="">{% csrf_token %}
+            <label>Marca</label>
+            {{ form.brand }}
+
+            <label>Color</label>
+            {{ form.color }}
+
+            <label>Patente</label>
+            {{ form.patent }}
+
+            <label>Chasis</label>
+            {{ form.chassis }}
+          <br>
+          <button type="submit" class="btn btn-default">Enviar</button>
+      </form>
+      <br>
+  </div>
+
+  <div>
+      <table class="table">
+        <caption>Lista de Autos del Conductor</caption>
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Color</th>
+                <th>Patente</th>
+                <th>Chasis</th>
+            </tr>
+        </thead>
+        {% for c in car %}
+        <tbody>
+            <tr>
+                <td>{{ c.brand }}</td>
+                <td>{{ c.color }}</td>
+                <td>{{ c.patent }}</td>
+                <td>{{ c.chassis }}</td>
+                <td><a href="{% url "parking_new" pk_car=c.pk %}">Estacionamiento</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+      </table>
+  </div>
+
+</div>
+
+{% endblock %}
